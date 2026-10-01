@@ -1,0 +1,270 @@
+<!-- LANDING ASCENSORES | Pegar en un widget "HTML" de Elementor (sección a ancho completo) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+#asc{--ink:#12202b;--steel:#1d3447;--mist:#eef1f3;--line:#d6dce1;--brass:#c58b2f;--brass2:#e0a94a;--white:#fff;font-family:'Manrope',system-ui,sans-serif;color:var(--ink);line-height:1.6;overflow:hidden;position:relative}
+#asc *{box-sizing:border-box;margin:0;padding:0}
+#asc h1,#asc h2,#asc h3{font-family:'Sora',sans-serif;line-height:1.1;letter-spacing:-.02em}
+#asc a{text-decoration:none;color:inherit}
+#asc .w{max-width:1160px;margin:0 auto;padding:0 24px}
+#asc .btn{display:inline-block;padding:15px 28px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .35s;cursor:pointer;border:0;font-family:inherit}
+#asc .btn:hover{transform:translateY(-3px)}
+#asc .b1{background:var(--brass);color:#fff;box-shadow:0 10px 24px -10px rgba(197,139,47,.8)}
+#asc .b1:hover{background:var(--brass2);box-shadow:0 16px 30px -10px rgba(197,139,47,.9)}
+#asc .b2{border:1.5px solid rgba(255,255,255,.4);color:#fff}
+#asc .b2:hover{background:rgba(255,255,255,.1)}
+#asc :focus-visible{outline:3px solid var(--brass2);outline-offset:3px}
+
+/* NAV */
+#asc nav{position:absolute;top:0;left:0;right:0;z-index:5;padding:22px 0;color:#fff}
+#asc nav .w{display:flex;justify-content:space-between;align-items:center}
+#asc .logo{font-family:'Sora';font-weight:700;font-size:20px}
+#asc .logo i{font-style:normal;color:var(--brass2)}
+#asc nav .links{display:flex;gap:30px;font-size:14px;font-weight:500;opacity:.9}
+#asc nav .links a:hover{color:var(--brass2)}
+
+/* HERO */
+#asc .hero{background:radial-gradient(1100px 600px at 80% 20%,#2a4a63 0%,transparent 60%),linear-gradient(160deg,#16293a,#0e1b27);color:#fff;padding:150px 0 110px}
+#asc .hero .w{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+#asc .hero h1{font-size:clamp(38px,5.2vw,64px);font-weight:700;margin-bottom:22px}
+#asc .hero p{font-size:18px;color:#c9d4dc;max-width:520px;margin-bottom:34px}
+#asc .hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+#asc .hero .in{opacity:0;transform:translateY(26px);animation:ascIn .9s cubic-bezier(.2,.8,.2,1) forwards}
+#asc .hero .in:nth-child(2){animation-delay:.12s}#asc .hero .in:nth-child(3){animation-delay:.24s}
+@keyframes ascIn{to{opacity:1;transform:none}}
+
+/* Hueco del ascensor */
+#asc .shaft{position:relative;height:460px;max-width:300px;margin:0 auto;border-radius:22px;background:linear-gradient(90deg,#0a141d,#162736 50%,#0a141d);border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 80px -30px #000,inset 0 0 40px rgba(0,0,0,.6);overflow:hidden}
+#asc .floors{position:absolute;inset:0;display:flex;flex-direction:column-reverse;justify-content:space-between;padding:0}
+#asc .floors span{height:1px;background:rgba(255,255,255,.1);position:relative}
+#asc .floors span b{position:absolute;right:10px;top:-18px;font:600 11px 'Sora';color:rgba(255,255,255,.35)}
+#asc .rail{position:absolute;top:0;bottom:0;width:3px;background:linear-gradient(#3b5870,#22384a)}
+#asc .rail.l{left:22px}#asc .rail.r{right:22px}
+#asc .cabin{position:absolute;left:36px;right:36px;height:112px;bottom:0;border-radius:10px;background:linear-gradient(#e7ecef,#b9c4cb);box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:bottom 1.5s cubic-bezier(.65,0,.25,1);overflow:hidden}
+#asc .door{position:absolute;top:22px;bottom:0;width:50%;background:linear-gradient(90deg,#9fb0ba,#cfd9df);transition:transform .7s cubic-bezier(.65,0,.25,1)}
+#asc .door.a{left:0;border-right:1px solid #7f929d}#asc .door.b{right:0}
+#asc .cabin.open .door.a{transform:translateX(-92%)}#asc .cabin.open .door.b{transform:translateX(92%)}
+#asc .disp{position:absolute;top:5px;left:50%;transform:translateX(-50%);background:#0b1218;color:var(--brass2);font:700 13px 'Sora';padding:1px 12px;border-radius:5px;letter-spacing:.05em;min-width:36px;text-align:center}
+#asc .badge{position:absolute;left:-14px;bottom:30px;background:#fff;color:var(--ink);border-radius:14px;padding:12px 16px;font-size:13px;font-weight:600;box-shadow:0 18px 40px -14px rgba(0,0,0,.5);animation:ascFloat 5s ease-in-out infinite}
+#asc .badge small{display:block;font-weight:500;color:#5b6b78}
+@keyframes ascFloat{50%{transform:translateY(-10px)}}
+#asc .shwrap{position:relative;max-width:340px;margin:0 auto;width:100%}
+
+/* STATS */
+#asc .stats{background:var(--white);border-bottom:1px solid var(--line)}
+#asc .stats .w{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:42px;padding-bottom:42px;text-align:center}
+#asc .stats strong{display:block;font:700 40px 'Sora';color:var(--steel)}
+#asc .stats span{font-size:14px;color:#5b6b78}
+
+/* SECCIONES */
+#asc section{padding:100px 0}
+#asc .head{max-width:620px;margin-bottom:54px}
+#asc .head h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:14px}
+#asc .head p{color:#4e5e6a;font-size:17px}
+#asc .rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+#asc .rv.on{opacity:1;transform:none}
+
+/* SERVICIOS */
+#asc .srv{background:var(--mist)}
+#asc .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+#asc .card{background:#fff;border-radius:20px;padding:32px 26px;border:1px solid var(--line);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,border-color .45s}
+#asc .card:hover{transform:translateY(-8px);box-shadow:0 26px 50px -24px rgba(18,32,43,.35);border-color:var(--brass)}
+#asc .ico{width:52px;height:52px;border-radius:14px;background:var(--steel);display:grid;place-items:center;margin-bottom:22px;transition:background .4s}
+#asc .card:hover .ico{background:var(--brass)}
+#asc .ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#asc .card h3{font-size:19px;margin-bottom:10px}
+#asc .card p{font-size:15px;color:#52626e}
+
+/* PROFESIONALES */
+#asc .pro .w{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+#asc .pro h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:18px}
+#asc .pro>.w>div>p{color:#4e5e6a;font-size:17px;margin-bottom:26px}
+#asc .list{list-style:none;display:grid;gap:14px;margin-bottom:34px}
+#asc .list li{display:flex;gap:14px;align-items:flex-start;font-weight:500}
+#asc .list li:before{content:"";flex:none;width:22px;height:22px;margin-top:2px;border-radius:50%;background:var(--brass) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/14px no-repeat}
+#asc .panel{background:linear-gradient(150deg,var(--steel),#10202d);border-radius:28px;padding:44px;color:#fff;position:relative;overflow:hidden}
+#asc .panel:after{content:"";position:absolute;width:260px;height:260px;right:-80px;top:-80px;border-radius:50%;background:radial-gradient(circle,rgba(224,169,74,.35),transparent 70%)}
+#asc .panel h3{font-size:24px;margin-bottom:22px;position:relative}
+#asc .panel dl{display:grid;gap:18px;position:relative}
+#asc .panel dt{font:600 15px 'Sora';color:var(--brass2)}
+#asc .panel dd{font-size:15px;color:#c9d4dc}
+
+/* PROCESO */
+#asc .proc{background:var(--mist)}
+#asc .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+#asc .steps:before{content:"";position:absolute;top:26px;left:6%;right:6%;height:2px;background:var(--line)}
+#asc .steps i{position:absolute;top:26px;left:6%;height:2px;width:0;background:var(--brass);transition:width 1.8s cubic-bezier(.4,0,.2,1)}
+#asc .steps.on i{width:88%}
+#asc .step{position:relative;text-align:left;padding-top:0}
+#asc .step b{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid var(--brass);font:700 18px 'Sora';color:var(--steel);margin-bottom:20px;position:relative;z-index:1}
+#asc .step h3{font-size:18px;margin-bottom:8px}
+#asc .step p{font-size:15px;color:#52626e}
+
+/* CONTACTO */
+#asc .contact{background:linear-gradient(160deg,#16293a,#0e1b27);color:#fff}
+#asc .contact .w{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+#asc .contact h2{font-size:clamp(30px,3.6vw,46px);margin-bottom:16px}
+#asc .contact p.lead{color:#c9d4dc;font-size:17px;margin-bottom:28px}
+#asc .contact .info{display:grid;gap:8px;color:#c9d4dc;font-size:15px}
+#asc form{background:#fff;color:var(--ink);padding:36px;border-radius:24px;display:grid;gap:14px;box-shadow:0 40px 80px -40px #000}
+#asc .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#asc label{font-size:13px;font-weight:600;color:#3b4b57;display:grid;gap:6px}
+#asc input,#asc select,#asc textarea{font:inherit;font-size:15px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#f8fafb;color:var(--ink);transition:border-color .3s,box-shadow .3s,background .3s;width:100%}
+#asc input:focus,#asc select:focus,#asc textarea:focus{outline:0;border-color:var(--brass);background:#fff;box-shadow:0 0 0 4px rgba(197,139,47,.18)}
+#asc textarea{min-height:96px;resize:vertical}
+#asc form .btn{width:100%;font-size:16px;padding:16px}
+#asc .ok{display:none;text-align:center;font-weight:600;color:#1d6b3f}
+#asc footer{background:#0a141d;color:#8fa1ae;text-align:center;font-size:13px;padding:26px}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+#asc .hero .w,#asc .pro .w,#asc .contact .w{grid-template-columns:1fr;gap:50px}
+#asc .grid4,#asc .steps{grid-template-columns:1fr 1fr}
+#asc .stats .w{grid-template-columns:1fr 1fr}
+#asc .steps:before,#asc .steps i{display:none}
+#asc nav .links{display:none}
+#asc section{padding:72px 0}
+}
+@media(max-width:560px){#asc .grid4,#asc .steps,#asc .row{grid-template-columns:1fr}#asc .hero{padding-top:120px}#asc .panel,#asc form{padding:28px}}
+@media(prefers-reduced-motion:reduce){#asc *{animation:none!important;transition:none!important}#asc .rv,#asc .hero .in{opacity:1;transform:none}}
+</style>
+
+<div id="asc">
+  <nav><div class="w">
+    <a class="logo" href="#asc">Ascen<i>sores</i> [Empresa]</a>
+    <div class="links"><a href="#servicios">Servicios</a><a href="#profesionales">Profesionales</a><a href="#proceso">Proceso</a></div>
+    <a class="btn b1" href="#contacto" style="padding:11px 22px;font-size:14px">Pedir cotización</a>
+  </div></nav>
+
+  <header class="hero"><div class="w">
+    <div>
+      <h1 class="in">Ascensores a medida para tu obra, fabricados por nosotros</h1>
+      <p class="in">Fabricamos, instalamos y mantenemos ascensores para edificios, comercios e industrias. Trabajamos junto a arquitectos y maestros mayores de obra para que el proyecto llegue a término sin sorpresas.</p>
+      <div class="cta in"><a class="btn b1" href="#contacto">Pedir cotización</a><a class="btn b2" href="#servicios">Ver servicios</a></div>
+    </div>
+    <div class="shwrap">
+      <div class="shaft" aria-hidden="true">
+        <div class="floors" id="ascFloors"></div>
+        <div class="rail l"></div><div class="rail r"></div>
+        <div class="cabin open" id="ascCabin"><div class="disp" id="ascDisp">1</div><div class="door a"></div><div class="door b"></div></div>
+      </div>
+      <div class="badge">Fabricación propia<small>Control total de calidad</small></div>
+    </div>
+  </div></header>
+
+  <div class="stats"><div class="w">
+    <div><strong data-n="25" data-s="+">0</strong><span>años de trayectoria</span></div>
+    <div><strong data-n="800" data-s="+">0</strong><span>ascensores instalados</span></div>
+    <div><strong data-n="120" data-s="+">0</strong><span>estudios y constructoras aliadas</span></div>
+    <div><strong data-n="24" data-s="h">0</strong><span>servicio técnico de emergencia</span></div>
+  </div></div>
+
+  <section class="srv" id="servicios"><div class="w">
+    <div class="head rv"><h2>Todo el ciclo del ascensor, en una sola empresa</h2><p>Al fabricar y vender directo, te damos un único responsable desde el diseño hasta el mantenimiento.</p></div>
+    <div class="grid4">
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><h3>Fabricación</h3><p>Cabinas, puertas, guías y tableros diseñados según las medidas y el uso de cada edificio.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.6-.6-.6-2.6z"/></svg></div><h3>Instalación</h3><p>Equipo propio de montaje, con cronograma ajustado a los tiempos de la obra.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></div><h3>Modernización</h3><p>Actualizamos equipos antiguos: más seguridad, menos consumo y mejor confort de viaje.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg></div><h3>Mantenimiento</h3><p>Abonos preventivos y guardia técnica para que el equipo no pare.</p></div>
+    </div>
+  </div></section>
+
+  <section class="pro" id="profesionales"><div class="w">
+    <div class="rv">
+      <h2>Pensado para quienes dirigen la obra</h2>
+      <p>Sabemos que un ascensor condiciona el proyecto desde el primer plano. Por eso nos sumamos temprano y trabajamos con tu equipo.</p>
+      <ul class="list">
+        <li>Planos y datos de hueco, foso y sobrerrecorrido antes de definir la estructura</li>
+        <li>Un solo interlocutor técnico durante todo el proyecto</li>
+        <li>Plazos de entrega claros y cumplidos</li>
+        <li>Documentación completa para habilitación y cierre de obra</li>
+      </ul>
+      <a class="btn b1" href="#contacto">Hablar con un técnico</a>
+    </div>
+    <div class="panel rv">
+      <h3>Qué recibís al consultarnos</h3>
+      <dl>
+        <div><dt>Asesoramiento técnico</dt><dd>Capacidad, paradas, velocidad y tipo de equipo según el edificio.</dd></div>
+        <div><dt>Presupuesto detallado</dt><dd>Con alcance, plazos y condiciones de forma transparente.</dd></div>
+        <div><dt>Planos para tu proyecto</dt><dd>Para integrar el ascensor al diseño sin retrabajos.</dd></div>
+      </dl>
+    </div>
+  </div></section>
+
+  <section class="proc" id="proceso"><div class="w">
+    <div class="head rv"><h2>Cómo trabajamos</h2><p>Cuatro etapas, siempre con seguimiento.</p></div>
+    <div class="steps rv" id="ascSteps"><i></i>
+      <div class="step"><b>1</b><h3>Consulta</h3><p>Relevamos la obra y definimos las necesidades del edificio.</p></div>
+      <div class="step"><b>2</b><h3>Proyecto y presupuesto</h3><p>Entregamos planos técnicos y una propuesta cerrada.</p></div>
+      <div class="step"><b>3</b><h3>Fabricación e instalación</h3><p>Producimos en planta y montamos en obra según cronograma.</p></div>
+      <div class="step"><b>4</b><h3>Habilitación y servicio</h3><p>Pruebas, documentación y plan de mantenimiento.</p></div>
+    </div>
+  </div></section>
+
+  <section class="contact" id="contacto"><div class="w">
+    <div class="rv">
+      <h2>Contanos sobre tu proyecto</h2>
+      <p class="lead">Te respondemos en menos de 24 horas hábiles con una primera orientación técnica.</p>
+      <div class="info"><span>WhatsApp: +54 9 351 000 0000</span><span>Email: contacto@tuempresa.com.ar</span><span>Córdoba, Argentina</span></div>
+    </div>
+    <form id="ascForm" class="rv">
+      <div class="row">
+        <label>Nombre<input name="n" required autocomplete="name"></label>
+        <label>Teléfono<input name="t" type="tel" required autocomplete="tel"></label>
+      </div>
+      <label>Email<input name="e" type="email" required autocomplete="email"></label>
+      <label>Tipo de proyecto
+        <select name="p"><option>Edificio nuevo</option><option>Modernización</option><option>Comercio o industria</option><option>Mantenimiento</option></select>
+      </label>
+      <label>Mensaje<textarea name="m" placeholder="Cantidad de pisos, ubicación, plazos…"></textarea></label>
+      <button class="btn b1" type="submit">Enviar consulta por WhatsApp</button>
+      <div class="ok" id="ascOk">Listo, se abrió WhatsApp con tu consulta.</div>
+    </form>
+  </div></section>
+
+  <footer>© 2026 [Empresa]. Fabricación, venta e instalación de ascensores.</footer>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('asc');if(!root)return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* Ascensor del hero: cierra puertas, sube/baja, abre */
+  var N=8,fl=document.getElementById('ascFloors'),cab=document.getElementById('ascCabin'),disp=document.getElementById('ascDisp'),cur=1;
+  for(var i=1;i<=N;i++){var s=document.createElement('span');s.innerHTML='<b>'+i+'</b>';fl.appendChild(s)}
+  function pos(f){var h=cab.parentNode.clientHeight-cab.offsetHeight;return (f-1)/(N-1)*h}
+  function go(){
+    var t=cur;while(t===cur)t=1+Math.floor(Math.random()*N);
+    cab.classList.remove('open');
+    setTimeout(function(){
+      cab.style.bottom=pos(t)+'px';
+      var steps=Math.abs(t-cur),from=cur,dir=t>cur?1:-1,k=0,iv=setInterval(function(){k++;disp.textContent=from+dir*k;if(k>=steps)clearInterval(iv)},1500/steps);
+      setTimeout(function(){cur=t;cab.classList.add('open')},1600);
+    },800);
+  }
+  cab.style.bottom='0px';
+  if(!reduce){setTimeout(function(){go();setInterval(go,5200)},1800)}
+
+  /* Aparición al hacer scroll */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.15});
+  root.querySelectorAll('.rv').forEach(function(el,i){el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)});
+
+  /* Contadores */
+  var co=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;co.unobserve(e.target);
+    var el=e.target,n=+el.dataset.n,sfx=el.dataset.s,t0=null;
+    function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/1600,1),v=Math.round(n*(1-Math.pow(1-p,3)));el.textContent=v+(p===1?sfx:'');if(p<1)requestAnimationFrame(f)}
+    reduce?el.textContent=n+sfx:requestAnimationFrame(f);
+  })},{threshold:.6});
+  root.querySelectorAll('[data-n]').forEach(function(el){co.observe(el)});
+
+  /* Formulario -> WhatsApp (cambiar el número) */
+  document.getElementById('ascForm').addEventListener('submit',function(ev){
+    ev.preventDefault();var f=ev.target;
+    var msg='Hola, soy '+f.n.value+'. Tel: '+f.t.value+'. Email: '+f.e.value+'. Proyecto: '+f.p.value+'. '+f.m.value;
+    window.open('https://wa.me/5493510000000?text='+encodeURIComponent(msg),'_blank');
+    document.getElementById('ascOk').style.display='block';
+  });
+})();
+</script>
